@@ -5,14 +5,16 @@ import axios from "axios";
 
 const SignUp = ({ setIsLoggedIn }) => {
   const navigate = useNavigate();
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data2 = {
-      name: name,
+      firstName: firstName,
+      lastName:lastName,
       email: email,
       password: password,
     };
@@ -35,14 +37,35 @@ const SignUp = ({ setIsLoggedIn }) => {
             <legend className="f1  ph0 mh0">Register</legend>
             <div className="mt3">
               <label className="db  lh-copy " htmlFor="name">
-                Name
+             First   Name
               </label>
               <input
                 className="pa2 input-reset ba  hover-bg-black hover-white w-100"
                 type="text"
                 name="name"
-                onChange={(e) => setName(e.target.value)}
+                onChange={(e) => setFirstName(e.target.value)}
               />
+            </div>
+<div className="mt3">
+
+              <label className="db  lh-copy " htmlFor="name">
+
+                Last Name
+
+              </label>
+
+              <input
+
+                className="pa2 input-reset ba  hover-bg-black hover-white w-100"
+
+                type="text"
+
+                name="name"
+
+                onChange={(e) => setLastName(e.target.value)}
+
+              />
+
             </div>
             <div className="mt3">
               <label className="db  lh-copy " htmlFor="email-address">
