@@ -23,7 +23,7 @@ const SignUp = ({ setIsLoggedIn }) => {
         localStorage.setItem("token", res.data.token);
       })
       .then(navigate("/home"))
-      .catch((err) => alert(err));
+      .catch((err) => alert(err.response.data.message));
   };
 
   return (
