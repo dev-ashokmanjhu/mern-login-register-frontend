@@ -19,10 +19,11 @@ const SignUp = ({ setIsLoggedIn }) => {
     const res = axios
       .post("https://mern-login-signup-backend.vercel.app/register", data2)
       .then((res) => {
+        alert("Register Success");
+        navigate("/home");
         setIsLoggedIn(true);
         localStorage.setItem("token", res.data.token);
       })
-      .then(navigate("/home"))
       .catch((err) => alert(err.response.data.message));
   };
 
@@ -31,9 +32,9 @@ const SignUp = ({ setIsLoggedIn }) => {
       <main className="pa4 ">
         <div className="measure">
           <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
-            <legend className="f1 fw6 ph0 mh0">Register</legend>
+            <legend className="f1  ph0 mh0">Register</legend>
             <div className="mt3">
-              <label className="db fw6 lh-copy f6" htmlFor="name">
+              <label className="db  lh-copy " htmlFor="name">
                 Name
               </label>
               <input
@@ -44,7 +45,7 @@ const SignUp = ({ setIsLoggedIn }) => {
               />
             </div>
             <div className="mt3">
-              <label className="db fw6 lh-copy f6" htmlFor="email-address">
+              <label className="db  lh-copy " htmlFor="email-address">
                 Email
               </label>
               <input
@@ -55,7 +56,7 @@ const SignUp = ({ setIsLoggedIn }) => {
               />
             </div>
             <div className="mv3">
-              <label className="db fw6 lh-copy f6" htmlFor="password">
+              <label className="db  lh-copy " htmlFor="password">
                 Password
               </label>
               <input
@@ -68,7 +69,7 @@ const SignUp = ({ setIsLoggedIn }) => {
           </fieldset>
           <div className="">
             <input
-              className="b ph3 pv2 input-reset ba  bg-transparent grow pointer f6 dib"
+              className="b ph3 pv2 input-reset ba   grow pointer  dib"
               type="submit"
               value="Register"
               onClick={handleSubmit}
@@ -76,7 +77,7 @@ const SignUp = ({ setIsLoggedIn }) => {
           </div>
           <div className="lh-copy mt3">
             <p
-              className="f6 link dim db pointer"
+              className=" link dim db pointer"
               onClick={() => navigate("/login")}
             >
               Log In

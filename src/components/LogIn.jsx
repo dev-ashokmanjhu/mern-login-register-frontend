@@ -18,6 +18,7 @@ const LogIn = ({ setIsLoggedIn }) => {
     const res = axios
       .post("https://mern-login-signup-backend.vercel.app/login", data2)
       .then((res) => {
+        alert("Login Success");
         setIsLoggedIn(true);
         localStorage.setItem("token", res.data.token);
       })
@@ -25,7 +26,7 @@ const LogIn = ({ setIsLoggedIn }) => {
       .catch((err) => alert(err.response.data.message));
   };
   return (
-    <article className="br3 ba  mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
+    <article className="br3 ba form mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
       <main className="pa4 ">
         <div className="measure">
           <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
@@ -57,7 +58,7 @@ const LogIn = ({ setIsLoggedIn }) => {
           </fieldset>
           <div className="">
             <input
-              className="b ph3 pv2 input-reset ba  bg-transparent grow pointer f6 dib"
+              className="b ph3 pv2 input-reset ba   grow pointer f6 dib"
               type="submit"
               value="Sign in"
               onClick={handleSubmit}

@@ -5,3 +5,9 @@ ul {
 li {
   margin: 0 20px;
 }
+main {
+  background-color: rgba(236, 230, 230, 0.7);
+  font-size: 20px;
+  font-weight: 700;
+  color: black;
+}
