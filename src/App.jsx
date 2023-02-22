@@ -25,6 +25,8 @@ const AppLayout = ({ isLoggedIn, setIsLoggedIn }) => {
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  console.log(token);
   const approuter = createBrowserRouter([
     {
       path: "/",
