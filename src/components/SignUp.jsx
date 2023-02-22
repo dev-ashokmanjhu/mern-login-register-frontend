@@ -1,8 +1,32 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const SignUp = () => {
   const navigate = useNavigate();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const response = await fetch("http://localhost:5000/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, email, password }),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      localStorage.setItem("token", data.token);
+      navigate("/home");
+    } else {
+      alert(data.message);
+    }
+  };
+
   return (
     <article className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
       <main className="pa4 black-80">
@@ -17,7 +41,7 @@ const SignUp = () => {
                 className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
                 type="text"
                 name="name"
-                // onChange={this.onNameChange}
+                onChange={(e) => setName(e.target.value)}
               />
             </div>
             <div className="mt3">
@@ -28,7 +52,7 @@ const SignUp = () => {
                 className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
                 type="email"
                 name="email-address"
-                // onChange={this.onEmailChange}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div className="mv3">
@@ -39,7 +63,7 @@ const SignUp = () => {
                 className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
                 type="password"
                 name="password"
-                // onChange={this.onPasswordChange}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
           </fieldset>
@@ -48,7 +72,7 @@ const SignUp = () => {
               className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
               type="submit"
               value="Register"
-              //   onClick={this.onSubmitSignIn}
+              onClick={handleSubmit}
             />
           </div>
           <div className="lh-copy mt3">
