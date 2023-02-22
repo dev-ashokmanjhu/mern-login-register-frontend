@@ -11,11 +11,13 @@ import {
 import Header from "./components/Header";
 import Home from "./components/Home";
 import { useState } from "react";
+import ParticlesBg from "particles-bg";
 
 const AppLayout = ({ isLoggedIn, setIsLoggedIn }) => {
   return (
     <>
       <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+      <ParticlesBg type="lines" bg={true} color="white" />
       <Outlet />
     </>
   );
