@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-const LogIn = () => {
+const LogIn = ({ setIsAuthenticated }) => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -19,6 +19,7 @@ const LogIn = () => {
     const data = await response.json();
 
     if (response.ok) {
+      setIsAuthenticated(true);
       localStorage.setItem("token", data.token);
       navigate("/home");
     } else {

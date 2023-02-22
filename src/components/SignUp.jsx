@@ -20,8 +20,8 @@ const SignUp = () => {
     const data = await response.json();
 
     if (response.ok) {
-      localStorage.setItem("token", data.token);
       navigate("/home");
+      localStorage.setItem("token", data.token);
     } else {
       alert(data.message);
     }
