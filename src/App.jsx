@@ -17,7 +17,7 @@ const AppLayout = ({ isLoggedIn, setIsLoggedIn }) => {
   return (
     <>
       <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
-      <ParticlesBg type="lines" bg={true} color="white" />
+      <ParticlesBg type="lines" bg={true} />
       <Outlet />
     </>
   );
