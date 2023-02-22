@@ -38,7 +38,7 @@ const SignUp = ({ setIsLoggedIn }) => {
                 Name
               </label>
               <input
-                className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
+                className="pa2 input-reset ba  hover-bg-black hover-white w-100"
                 type="text"
                 name="name"
                 onChange={(e) => setName(e.target.value)}
@@ -49,7 +49,7 @@ const SignUp = ({ setIsLoggedIn }) => {
                 Email
               </label>
               <input
-                className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
+                className="pa2 input-reset ba  hover-bg-black hover-white w-100"
                 type="email"
                 name="email-address"
                 onChange={(e) => setEmail(e.target.value)}
@@ -60,7 +60,7 @@ const SignUp = ({ setIsLoggedIn }) => {
                 Password
               </label>
               <input
-                className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
+                className="b pa2 input-reset ba  hover-bg-black hover-white w-100"
                 type="password"
                 name="password"
                 onChange={(e) => setPassword(e.target.value)}
