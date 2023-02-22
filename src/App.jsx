@@ -10,7 +10,7 @@ import {
 } from "react-router-dom";
 import Header from "./components/Header";
 import Home from "./components/Home";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ParticlesBg from "particles-bg";
 
 const AppLayout = ({ isLoggedIn, setIsLoggedIn }) => {
@@ -25,6 +25,11 @@ const AppLayout = ({ isLoggedIn, setIsLoggedIn }) => {
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    token ? setIsLoggedIn(true) : setIsLoggedIn(false);
+  }, []);
 
   const approuter = createBrowserRouter([
     {
