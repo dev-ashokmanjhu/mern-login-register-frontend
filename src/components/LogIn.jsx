@@ -1,8 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import axios from "axios";
 
-const LogIn = ({ setIsAuthenticated }) => {
+const LogIn = ({ setIsLoggedIn }) => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -10,24 +11,19 @@ const LogIn = ({ setIsAuthenticated }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch(
-      "https://mern-login-signup-backend.vercel.app/login",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      }
-    );
-    console.log(response);
-    const data = await response.json();
-
-    if (response.ok) {
-      setIsAuthenticated(true);
-      localStorage.setItem("token", data.token);
-      navigate("/home");
-    } else {
-      alert(data.message);
-    }
+    const data2 = {
+      email: email,
+      password: password,
+    };
+    const res = axios
+      .post("https://mern-login-signup-backend.vercel.app/login", data2)
+      .then((res) => {
+        setIsLoggedIn(true);
+        localStorage.setItem("token", res.token);
+      })
+      .then(navigate("/home"))
+      .catch((err) => alert(err.message));
+    console.log(res);
   };
   return (
     <article className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">

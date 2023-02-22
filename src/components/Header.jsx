@@ -1,18 +1,17 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-const Header = () => {
-  const token = localStorage.getItem("token");
+const Header = ({ isLoggedIn, setIsLoggedIn }) => {
   const navigate = useNavigate();
   const logOutHandler = () => {
-    localStorage.removeItem("token");
     navigate("/login");
+    setIsLoggedIn(false);
   };
 
   return (
     <nav>
       <ul>
-        {token ? (
+        {isLoggedIn ? (
           <li onClick={logOutHandler}>
             <Link>Log Out</Link>
           </li>

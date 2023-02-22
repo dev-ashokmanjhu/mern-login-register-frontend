@@ -12,38 +12,47 @@ import Header from "./components/Header";
 import Home from "./components/Home";
 import { useState } from "react";
 
-const AppLayout = () => {
+const AppLayout = ({ isLoggedIn, setIsLoggedIn }) => {
   return (
     <>
-      <Header />
+      <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
       <Outlet />
     </>
   );
 };
 
-const token = localStorage.getItem("token");
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const approuter = createBrowserRouter([
     {
       path: "/",
-      element: <AppLayout />,
+      element: (
+        <AppLayout isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+      ),
       children: [
         {
           path: "/",
-          element: token ? <Home /> : <Navigate to="/login" />,
+          element: isLoggedIn ? <Home /> : <Navigate to="/login" />,
         },
         {
           path: "/login",
-          element: <LogIn setIsAuthenticated={setIsAuthenticated} />,
+          element: isLoggedIn ? (
+            <Navigate to="/home" />
+          ) : (
+            <LogIn setIsLoggedIn={setIsLoggedIn} />
+          ),
         },
         {
           path: "/register",
-          element: <SignUp setIsAuthenticated={setIsAuthenticated} />,
+          element: isLoggedIn ? (
+            <Navigate to="/home" />
+          ) : (
+            <SignUp setIsLoggedIn={setIsLoggedIn} />
+          ),
         },
         {
           path: "/home",
-          element: token ? <Home /> : <Navigate to="/login" />,
+          element: isLoggedIn ? <Home /> : <Navigate to="/login" />,
         },
       ],
     },

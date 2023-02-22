@@ -1,8 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import axios from "axios";
 
-const SignUp = () => {
+const SignUp = ({ setIsLoggedIn }) => {
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -10,24 +11,19 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const response = await fetch(
-      "https://mern-login-signup-backend.vercel.app/register",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, password }),
-      }
-    );
-
-    const data = await response.json();
-
-    if (response.ok) {
-      navigate("/home");
-      localStorage.setItem("token", data.token);
-    } else {
-      alert(data.message);
-    }
+    const data2 = {
+      name: name,
+      email: email,
+      password: password,
+    };
+    const res = axios
+      .post("https://mern-login-signup-backend.vercel.app/register", data2)
+      .then((res) => {
+        setIsLoggedIn(true);
+        localStorage.setItem("token", res.token);
+      })
+      .then(navigate("/home"))
+      .catch((err) => alert(err));
   };
 
   return (
