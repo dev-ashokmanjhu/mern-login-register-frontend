@@ -7,10 +7,11 @@ const LogIn = ({ setIsLoggedIn }) => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setIsLoading(true)
     const data2 = {
       email: email,
       password: password,
@@ -18,11 +19,13 @@ const LogIn = ({ setIsLoggedIn }) => {
     const res = axios
       .post("https://mern-login-signup-backend.vercel.app/login", data2)
       .then((res) => {
+        navigate("/home")
         alert("Login Success");
         setIsLoggedIn(true);
+        setIsLoading(false)
         localStorage.setItem("token", res.data.token);
       })
-      .then(navigate("/home"))
+
       .catch((err) => alert(err.response.data.message));
   };
   return (
@@ -60,7 +63,7 @@ const LogIn = ({ setIsLoggedIn }) => {
             <input
               className="b ph3 pv2 input-reset ba   grow pointer  dib"
               type="submit"
-              value="Sign in"
+              value={isLoading ? "Log In ..." : "Log In"}
               onClick={handleSubmit}
             />
           </div>
