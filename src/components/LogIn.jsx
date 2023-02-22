@@ -26,8 +26,9 @@ const LogIn = ({ setIsLoggedIn }) => {
         localStorage.setItem("token", res.data.token);
       })
 
-      .catch((err) => alert(err.response.data.message));
-    setIsLoading(false)
+      .catch((err) => {alert(err.response.data.message),
+            setIsLoading(false)});
+    
   };
   return (
     <article className="br3 ba mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
