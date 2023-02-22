@@ -19,7 +19,7 @@ const LogIn = ({ setIsLoggedIn }) => {
       .post("https://mern-login-signup-backend.vercel.app/login", data2)
       .then((res) => {
         setIsLoggedIn(true);
-        localStorage.setItem("token", res.token);
+        localStorage.setItem("token", res.data.token);
       })
       .then(navigate("/home"))
       .catch((err) => alert(err.message));

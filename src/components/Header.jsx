@@ -6,6 +6,7 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
   const logOutHandler = () => {
     navigate("/login");
     setIsLoggedIn(false);
+    localStorage.removeItem("token");
   };
 
   return (
