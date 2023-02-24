@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import Loader from "../assets/svg.gif";
-import Gif from "../assets/Circles-menu-3.gif";
 
 const LogIn = ({ setIsLoggedIn }) => {
   const navigate = useNavigate();
