@@ -2,6 +2,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import Loader from "../assets/svg.gif";
+import Gif from "../assets/Circles-menu-3.gif";
 
 const LogIn = ({ setIsLoggedIn }) => {
   const navigate = useNavigate();
@@ -11,7 +13,7 @@ const LogIn = ({ setIsLoggedIn }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true)
+    setIsLoading(true);
     const data2 = {
       email: email,
       password: password,
@@ -19,16 +21,16 @@ const LogIn = ({ setIsLoggedIn }) => {
     const res = axios
       .post("https://mern-login-signup-backend.vercel.app/login", data2)
       .then((res) => {
-        navigate("/home")
+        navigate("/home");
+        setIsLoading(false);
         alert("Login Success");
         setIsLoggedIn(true);
-        setIsLoading(false)
         localStorage.setItem("token", res.data.token);
       })
 
-      .catch((err) => {alert(err.response.data.message),
-            setIsLoading(false)});
-    
+      .catch((err) => {
+        alert(err.response.data.message), setIsLoading(false);
+      });
   };
   return (
     <article className="br3 ba mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
@@ -62,12 +64,16 @@ const LogIn = ({ setIsLoggedIn }) => {
             </div>
           </fieldset>
           <div className="">
-            <input
-              className="b ph3 pv2 input-reset ba   grow pointer  dib"
-              type="submit"
-              value={isLoading ? "Log In ..." : "Log In"}
-              onClick={handleSubmit}
-            />
+            {isLoading ? (
+              <img src={Loader} alt="" />
+            ) : (
+              <input
+                className="b ph3 pv2 input-reset ba   grow pointer  dib"
+                type="submit"
+                value={"Log In"}
+                onClick={handleSubmit}
+              />
+            )}
           </div>
           <div className="lh-copy mt3">
             <p
